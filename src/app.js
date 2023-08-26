@@ -7,7 +7,6 @@ const OnClickEvent = (e) => {
 }
 
 const App = () => {
-	console.log(styles);
 	return (
 			<div className={styles.content}>
 				<div className={styles.label}>
