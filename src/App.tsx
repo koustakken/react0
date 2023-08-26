@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from './app.modules.scss'
+import styles from './App.modules.scss'
 
-const OnClickEvent = (e) => {
+const OnClickEvent = (e: any) => {
 	e.preventDefault()
 	alert('Clicked')
 }

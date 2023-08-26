@@ -7,7 +7,7 @@ const production = process.env.NODE_ENV === 'production';
 
 module.exports = {
 	context: path.resolve(__dirname,'src'),
-    entry: './index.js',
+    entry: './index.tsx',
     output: {
 		path: path.resolve(__dirname, 'dist'),
         filename: production? '[name].min.js' : '[name].js',
@@ -16,12 +16,19 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader'
-                }
-			},
+				test: /\.(ts|js)x?$/,
+				exclude: /node_modules/,
+				use: {
+				  loader: "babel-loader",
+				  options: {
+					presets: [
+					  "@babel/preset-env",
+					  "@babel/preset-react",
+					  "@babel/preset-typescript",
+					],
+				  },
+				},
+			  },
 			{
 				test: /\.s(a|c)ss$/,
 				exclude: /node_modules/,
@@ -34,6 +41,9 @@ module.exports = {
 						}
 					},
 					{
+						loader: "css-modules-typescript-loader",
+					},
+					{
 						loader:'sass-loader',
 					}
 				]
@@ -41,7 +51,7 @@ module.exports = {
 		]
 	},
 	resolve: {
-		extensions: ["*", ".js", ".jsx", "scss"],
+		extensions: [".*",".ts",".tsx",".js",".scss"],
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
