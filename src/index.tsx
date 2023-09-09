@@ -4,11 +4,18 @@ import App from "./App";
 
 import { BrowserRouter } from 'react-router-dom';
 
+import {QueryClient, QueryClientProvider} from 'react-query'
+
+const queryClient = new QueryClient();
+
 const rootElement = document.getElementById("root") as HTMLElement;
 const root = ReactDOM.createRoot(rootElement);
 
 root.render(
-	<BrowserRouter>
-		<App />
-	</BrowserRouter>
+	<QueryClientProvider client={queryClient}>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</QueryClientProvider>
+
 );
